@@ -15,17 +15,24 @@
 
 # Still brainstorming...
 
-import pygame
+import pygame as pg
 from random import choice
+from pygame.sprite import Sprite
+from pygame.math import Vector2 as vec
+import os
+from settings import *
 
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, 'images')
+snd_folder = os.path.join(game_folder, 'sounds')
 
-class Cell(pygame.sprite.Sprite):
+class Cell(pg.sprite.Sprite):
     w, h = 16, 16
 
     def __init__(self, x, y, maze):
-        pygame.sprite.Sprite.__init__(self)
+        pg.sprite.Sprite.__init__(self)
 
-        self.image = pygame.Surface([self.w, self.h])
+        self.image = pg.Surface([self.w, self.h])
         self.image.fill((255, 255, 255))
         self.rect = self.image.get_rect()
         self.rect.x = x * self.w
@@ -39,6 +46,37 @@ class Cell(pygame.sprite.Sprite):
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+
+class Player(Sprite):
+    def __init__(self, game):
+        Sprite.__init__(self)
+        # Makes self.game into game for convenience purposes
+        self.game = game
+        # An image for player
+        self.image = pg.image.load(os.path.join(img_folder, 'theBigBell.png')).convert()
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        # Sets attributes, like health and score, but also velocity and acceleration
+        self.rect.center = (0, 0)
+        self.pos = vec((Cell.w * 41)/2, (Cell.h * 41)/2)
+        self.vel = vec(0,0)
+        self.acc = vec(0,0)
+        self.health = 3
+        self.score = 0
+    # Defines the controls, setting different movements to keys
+    def controls(self):
+        keys = pg.key.get_pressed()
+        if keys[pg.K_a]:
+            self.direction.x = -5
+        if keys[pg.K_d]:
+            self.direction.x = 5
+        if keys[pg.K_w]:
+            self.direction.y = -5
+        if keys[pg.K_s]:
+            self.direction.y = 5
+        else:
+            self.direction.x = 0
+            self.direction.y = 0
 
 
 class Wall(Cell):
@@ -81,8 +119,8 @@ class Maze:
 
                 if animate:
                     self.draw(screen)
-                    pygame.display.update()
-                    pygame.time.wait(10)
+                    pg.display.update()
+                    pg.time.wait(10)
             except IndexError:
                 if stack:
                     cur = stack.pop()
