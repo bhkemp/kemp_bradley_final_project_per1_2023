@@ -16,7 +16,7 @@ Installing:
 Access on Github
 
 Executing program:
-Run the code--press play--while on maze_game.py
+Run the code--press play--while on main.py
 
 Help
 Contact the author!
@@ -30,8 +30,9 @@ Various bug fixes and optimizations
 See commit change or See release history
 0.1
 Initial Release
+
 License
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
 Acknowledgments
-Inspiration, code snippets, etc. * awesome-readme * PurpleBooth * dbader * zenorocha * fvcproductions
+The Python Code at https://thepythoncode.com/article/build-a-maze-game-in-python
