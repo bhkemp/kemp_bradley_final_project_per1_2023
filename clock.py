@@ -1,4 +1,6 @@
-# clock.py
+# This file was created by: Bradley Kemp
+# Sources: https://thepythoncode.com/article/build-a-maze-game-in-python
+
 import pygame, time
 
 pygame.font.init()

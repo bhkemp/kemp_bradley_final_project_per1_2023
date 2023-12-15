@@ -2,15 +2,16 @@
 
 Simple overview of use/purpose:
 Execute an algorithim to make a maze. 
+Playable maze!
 
 Description
-A game where you have to escape a maze! A mob will start to follow in your path, so you can't make any mistakes!
+Be the first one to complete the maze!
 
 Getting Started
 
 Dependencies
 Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-Windows 11; Python 3.11; pygame
+Windows 11; Python 3.11; Import pygame, sys, and os
 
 Installing:
 Access on Github

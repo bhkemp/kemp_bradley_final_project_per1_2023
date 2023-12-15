@@ -1,4 +1,6 @@
-# cell.py
+# This file was created by: Bradley Kemp
+# Sources: https://thepythoncode.com/article/build-a-maze-game-in-python
+
 import pygame
 from random import choice
 
@@ -31,10 +33,12 @@ class Cell:
     # checking cell neighbors of current cell if visited (carved) or not
     def check_neighbors(self, cols, rows, grid_cells):
         neighbors = []
+        # checks if there is a cell to the top, right, bottom, or left
         top = self.check_cell(self.x, self.y - 1, cols, rows, grid_cells)
         right = self.check_cell(self.x + 1, self.y, cols, rows, grid_cells)
         bottom = self.check_cell(self.x, self.y + 1, cols, rows, grid_cells)
         left = self.check_cell(self.x - 1, self.y, cols, rows, grid_cells)
+        # gets neighbors that have not been visited
         if top and not top.visited:
             neighbors.append(top)
         if right and not right.visited:
@@ -43,4 +47,5 @@ class Cell:
             neighbors.append(bottom)
         if left and not left.visited:
             neighbors.append(left)
+        # MAIN COMPONENT: choice picks a neighbor at random to create a path
         return choice(neighbors) if neighbors else False
